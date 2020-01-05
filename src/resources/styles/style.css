@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main_wrapper {
+  max-width: 200rem;
+  max-height: 120rem;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+*
+   COLORS
+*
+*/
+/*
+*
+   FONTS
+*
+*/
+
+/*# sourceMappingURL=style.css.map */
