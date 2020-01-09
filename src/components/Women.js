@@ -12,7 +12,11 @@ class Women extends Component {
     halfWidth:`${window.innerWidth}`/2,
     Height:`${window.innerHeight}`,
     Width:`${window.innerWidth}`,
-    ratio:`${window.innerWidth}`/`${window.innerHeight}`
+    ratio:`${window.innerWidth}`/`${window.innerHeight}`,
+    showSidebar: false,
+    openMenu: false,
+    clicked: false
+
   }
 
   
@@ -27,15 +31,13 @@ class Women extends Component {
 
       window.addEventListener("resize", this.updateDimensions);
 
-      console.log(this.state.ratio);
        
   }
 
   componentWillMount() {
 
-    document.addEventListener('click', this.handleOutsideClick, false);
-    document.addEventListener('click', this.handleOutsideClick2, false);
     window.addEventListener("resize", this.updateDimensions);
+    document.addEventListener('click', this.handleOutsideClick, false);
 
   }
  
@@ -43,8 +45,7 @@ class Women extends Component {
 
     clearInterval(this.nextComponent);
     window.removeEventListener("resize", this.updateDimensions);
-    document.removeEventListener('click', this.handleOutsideClick, false);
-    document.removeEventListener('click', this.handleOutsideClick2, false);
+    document.addEventListener('click', this.handleOutsideClick, false);
      
   }
 
@@ -56,8 +57,30 @@ class Women extends Component {
         Height:`${window.innerHeight}`,
         Width:`${window.innerWidth}`,
         ratio:`${window.innerWidth}`/`${window.innerHeight}`,
+        showSidebar: false,
+        openMenu: false,
       })
   }
+
+ handleClick = () => {
+
+    this.setState({
+        clicked: true
+    });
+
+ }
+
+ handleOutsideClick = (event) => {
+
+    if (!this.refs.megaMenu.contains(event.target)) {
+
+        this.setState({
+
+            clicked: false
+            
+        });
+    } 
+ }
 
  carousel = () => {
 
@@ -111,7 +134,34 @@ class Women extends Component {
         z[this.state.myIndex-1].style.opacity = "0"; 
       }, 4100);
   
-}
+ }
+
+ sidebarOpenHandler = () => {
+
+    setTimeout(() => {
+        
+        this.setState({
+            showSidebar : true, openMenu : true
+        })
+      }, 100);  
+ }
+
+ sidebarCloseHandler = (e) => {
+
+    if(e.target.id !== "menu"){
+        this.setState({
+             openMenu : false
+        })
+
+        setTimeout(() => {
+        
+            this.setState({
+                showSidebar : false
+            }) 
+          }, 400);
+    }
+    console.log(e.target.id)
+ }
 
 
     render() {
@@ -128,6 +178,43 @@ class Women extends Component {
            
         return (
            <div className="women_wrapper">
+
+<             div className="menu_btn" onClick={() => this.sidebarOpenHandler()}>
+                  <Icon icon='menu' 
+                      
+                  />
+              </div>
+
+              <div className="sidebar" 
+                     style={{display:this.state.showSidebar ? "flex" : "none",
+                             animationName:this.state.openMenu ? "" : "fadeMenu"}}
+                     onClick={(e) => this.sidebarCloseHandler(e)}
+              >
+
+                   <nav className="sidebar_navigation" id="menu"
+                        style={{animationName:this.state.openMenu ? "sidebarOpen" : "sidebarClose"}}
+                   >                       
+                        <div className="sidebar_navigation-menu" id="menu">
+                            <p id="menu" className="sidebar_navigation-menu-item">women</p>
+                            <p id="menu" className="sidebar_navigation-menu-item">trf</p>
+                            <p id="menu" className="sidebar_navigation-menu-item">men</p>
+                            <p id="menu" className="sidebar_navigation-menu-item">kids</p>
+                        </div>
+                        <div className="sidebar_navigation-search" id="menu">
+                            <div  className="sidebar_navigation-search-icon" id="menu">
+                                <Icon icon='search'/>
+                            </div>
+                            <input className="sidebar_navigation-search-input" type="text" id="menu"/>
+                        </div>
+                        <div className="sidebar_navigation-social" id="menu">
+                            <Icon icon='facebook'/> 
+                            <Icon icon='twitter'/> 
+                            <Icon icon='instagram'/> 
+                            <Icon icon='dribbble'/> 
+                        </div>
+                    </nav>
+
+              </div>
 
               <h1 className="title_new">new</h1>
               

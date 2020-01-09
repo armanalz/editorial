@@ -1,0 +1,56 @@
+
+@keyframes sidebarOpen {
+
+ from {transform: scaleX(0)}
+ to {transform: scaleX(1)}
+
+}
+
+@keyframes sidebarClose {
+
+    from {transform: scaleX(1)}
+    to {transform: scaleX(0)}
+   
+}
+
+@keyframes fadeMenu {
+
+    from {background: rgba($color-black, .7)}
+    to {background: transparent}
+   
+   }
+
+@keyframes menuButton {
+
+    0% {
+
+        background-size: 0 0;
+        background-image:radial-gradient(circle, rgba(white, .4) 30%, rgba($color-white, .3) 70%);
+
+    }
+
+    33% {
+        background-size: 3.8rem 3.8rem;
+        background-image:radial-gradient(circle, rgba(white, .5) 30%, rgba($color-white, .4) 70%);
+
+    }
+
+    67% {
+        background-size: 3.8rem 3.8rem;
+        background-image:radial-gradient(circle, rgba(white, .5) 30%, rgba($color-white, .4) 70%);
+
+    }
+
+    100% {
+        background-size: 3.8rem 3.8rem;
+        background-image:radial-gradient(circle, transparent, transparent);
+
+    }
+   
+}
+
+#menu {
+
+   animation-duration: .4s;
+   animation-timing-function: ease;
+}
